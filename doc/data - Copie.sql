@@ -2,75 +2,75 @@ CREATE DATABASE IF NOT EXISTS demo;
 use demo;
 
 CREATE TABLE BidList (
-  bid_list_id tinyint(4) NOT NULL AUTO_INCREMENT,
+  BidListId tinyint(4) NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
-  bid_quantity DOUBLE,
-  ask_quantity DOUBLE,
+  bidQuantity DOUBLE,
+  askQuantity DOUBLE,
   bid DOUBLE ,
   ask DOUBLE,
   benchmark VARCHAR(125),
-  bid_list_date TIMESTAMP,
+  bidListDate TIMESTAMP,
   commentary VARCHAR(125),
   security VARCHAR(125),
   status VARCHAR(10),
   trader VARCHAR(125),
   book VARCHAR(125),
-  creation_name VARCHAR(125),
-  creation_date TIMESTAMP ,
-  revision_name VARCHAR(125),
-  revision_date TIMESTAMP ,
-  deal_name VARCHAR(125),
-  deal_type VARCHAR(125),
-  source_list_id VARCHAR(125),
+  creationName VARCHAR(125),
+  creationDate TIMESTAMP ,
+  revisionName VARCHAR(125),
+  revisionDate TIMESTAMP ,
+  dealName VARCHAR(125),
+  dealType VARCHAR(125),
+  sourceListId VARCHAR(125),
   side VARCHAR(125),
 
-  PRIMARY KEY (bid_list_id)
+  PRIMARY KEY (BidListId)
 );
 
 CREATE TABLE Trade (
-  trade_id tinyint(4) NOT NULL AUTO_INCREMENT,
+  TradeId tinyint(4) NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
-  buy_quantity DOUBLE,
-  sell_quantity DOUBLE,
-  buy_price DOUBLE ,
-  sell_price DOUBLE,
-  trade_date TIMESTAMP,
+  buyQuantity DOUBLE,
+  sellQuantity DOUBLE,
+  buyPrice DOUBLE ,
+  sellPrice DOUBLE,
+  tradeDate TIMESTAMP,
   security VARCHAR(125),
   status VARCHAR(10),
   trader VARCHAR(125),
   benchmark VARCHAR(125),
   book VARCHAR(125),
-  creation_name VARCHAR(125),
-  creation_date TIMESTAMP ,
-  revision_name VARCHAR(125),
-  revision_date TIMESTAMP ,
-  deal_name VARCHAR(125),
-  deal_type VARCHAR(125),
-  source_list_id VARCHAR(125),
+  creationName VARCHAR(125),
+  creationDate TIMESTAMP ,
+  revisionName VARCHAR(125),
+  revisionDate TIMESTAMP ,
+  dealName VARCHAR(125),
+  dealType VARCHAR(125),
+  sourceListId VARCHAR(125),
   side VARCHAR(125),
 
-  PRIMARY KEY (trade_id)
+  PRIMARY KEY (TradeId)
 );
 
 CREATE TABLE CurvePoint (
   Id tinyint(4) NOT NULL AUTO_INCREMENT,
-  curve_id tinyint,
-  as_of_date TIMESTAMP,
+  CurveId tinyint,
+  asOfDate TIMESTAMP,
   term DOUBLE ,
   value DOUBLE ,
-  creation_date TIMESTAMP ,
+  creationDate TIMESTAMP ,
 
   PRIMARY KEY (Id)
 );
 
 CREATE TABLE Rating (
   Id tinyint(4) NOT NULL AUTO_INCREMENT,
-  moodys_rating VARCHAR(125),
-  sandprating VARCHAR(125),
-  fitch_rating VARCHAR(125),
-  order_number tinyint,
+  moodysRating VARCHAR(125),
+  sandPRating VARCHAR(125),
+  fitchRating VARCHAR(125),
+  orderNumber tinyint,
 
   PRIMARY KEY (Id)
 );
@@ -81,8 +81,8 @@ CREATE TABLE RuleName (
   description VARCHAR(125),
   json VARCHAR(125),
   template VARCHAR(512),
-  sql_str VARCHAR(125),
-  sql_part VARCHAR(125),
+  sqlStr VARCHAR(125),
+  sqlPart VARCHAR(125),
 
   PRIMARY KEY (Id)
 );

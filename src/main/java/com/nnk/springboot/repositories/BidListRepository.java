@@ -12,11 +12,11 @@ import java.util.List;
 @Repository
 public interface BidListRepository extends JpaRepository<BidList, Integer> {
 
-    @Query(value = "SELECT * FROM bidlist WHERE BidListId = ?1 LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM bidlist WHERE bid_list_id = ?1 LIMIT 1", nativeQuery = true)
     public BidList findOneById(Integer id);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE bidlist b set account =?2, type =?3, bidQuantity =?4 where b.BidListId = ?1", nativeQuery = true)
+    @Query(value = "UPDATE bidlist b set account =?2, type =?3, bid_quantity =?4 where b.bid_list_id = ?1", nativeQuery = true)
     public void updateBidList(Integer BidListId, String account, String type, Double bidQuantity);
 }

@@ -1,6 +1,7 @@
 package com.nnk.springboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
@@ -20,26 +22,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    @Qualifier("customUserDetailsService")
+    private UserDetailsService customUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers( "/*").permitAll()
-                .antMatchers("/register").permitAll()
+                .authorizeRequests().antMatchers( "/css/*","/","/user/*").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/").failureUrl("/login?error=true").permitAll()
-                .and().logout().deleteCookies("JSESSIONID").logoutUrl("/logout").logoutSuccessUrl("/login");
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/bidList/list",true).failureUrl("/login?error=true").permitAll()
+                .and().logout().deleteCookies("JSESSIONID").logoutUrl("/app-logout").logoutSuccessUrl("/");
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("springuser").password(bCryptPasswordEncoder().encode("spring123"))
-                .roles("USER")
-                .and()
-                .withUser("springadmin").password(bCryptPasswordEncoder().encode("admin123"))
-                .roles("ADMIN", "USER");
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

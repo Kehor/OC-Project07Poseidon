@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface TradeRepository extends JpaRepository<Trade, Integer> {
 
-    @Query(value = "SELECT * FROM trade WHERE tradeId = ?1 LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM trade WHERE trade_id = ?1 LIMIT 1", nativeQuery = true)
     public Trade findOneById(Integer id);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE trade t set account =?2, type =?3 where t.tradeId = ?1", nativeQuery = true)
-    public void updateTrade(Integer tradeId, String account, String type);
+    @Query(value = "UPDATE trade t set account =?2, type =?3, buy_quantity =?4, sell_quantity =?5 where t.trade_id = ?1", nativeQuery = true)
+    public void updateTrade(Integer tradeId, String account, String type, Double buyQuantity, Double sellQuantity);
 }

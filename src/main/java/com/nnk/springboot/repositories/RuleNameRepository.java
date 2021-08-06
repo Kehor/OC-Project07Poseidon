@@ -14,6 +14,6 @@ public interface RuleNameRepository extends JpaRepository<RuleName, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE rulename r set name =?2, description =?3, json =?4, template =?5, sqlStr =?6, sqlPart =?7 where r.id = ?1", nativeQuery = true)
+    @Query(value = "UPDATE rulename r set name =?2, description =?3, json =?4, template =?5, sql_str =?6, sql_part =?7 where r.id = ?1", nativeQuery = true)
     public void updateRuleName(Integer id, String name, String description, String json, String template, String sqlStr, String sqlPart);
 }

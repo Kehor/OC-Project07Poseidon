@@ -8,16 +8,16 @@ public class BidListDto {
 
     String type;
 
-    Double bid;
+    Double bidQuantity;
 
     public BidListDto() {
     }
 
-    public BidListDto(Integer bidListId, String account, String type, Double bid) {
+    public BidListDto(Integer bidListId, String account, String type, Double bidQuantity) {
         BidListId = bidListId;
         this.account = account;
         this.type = type;
-        this.bid = bid;
+        this.bidQuantity = bidQuantity;
     }
 
     public Integer getBidListId() {
@@ -44,11 +44,7 @@ public class BidListDto {
         this.type = type;
     }
 
-    public Double getBid() {
-        return bid;
-    }
+    public Double getBidQuantity() { return bidQuantity; }
 
-    public void setBid(Double bid) {
-        this.bid = bid;
-    }
+    public void setBidQuantity(Double bidQuantity) { this.bidQuantity = bidQuantity; }
 }

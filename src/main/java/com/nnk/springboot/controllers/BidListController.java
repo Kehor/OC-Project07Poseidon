@@ -41,7 +41,7 @@ public class BidListController {
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid (define annotation like in User) and save to db, after saving return bid list
         bidListService.saveBidList(bid);
-        return "bidList/add";
+        return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/update/{id}")
@@ -56,6 +56,7 @@ public class BidListController {
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
+        bidList.setBidListId(id);
         bidListService.updateBidList(bidList);
         return "redirect:/bidList/list";
     }

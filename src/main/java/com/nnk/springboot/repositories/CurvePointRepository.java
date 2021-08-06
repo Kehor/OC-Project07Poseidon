@@ -14,6 +14,6 @@ public interface CurvePointRepository extends JpaRepository<CurvePoint, Integer>
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE curvepoint c set curveId =?2, term =?3, value =?4 where c.id = ?1", nativeQuery = true)
+    @Query(value = "UPDATE curvepoint c set curve_id =?2, term =?3, value =?4 where c.id = ?1", nativeQuery = true)
     public void updateCurvePoint(Integer id, Integer curveId, Double term, Double value);
 }

@@ -13,6 +13,6 @@ public interface RatingRepository extends JpaRepository<Rating, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE rating r set moodysRating =?2, sandPRating =?3, fitchRating =?4, orderNumber =?5 where r.id = ?1", nativeQuery = true)
+    @Query(value = "UPDATE rating r set moodys_rating =?2, sandprating =?3, fitch_rating =?4, order_number =?5 where r.id = ?1", nativeQuery = true)
     public void updateRating(Integer id, String moodysRating, String sandPRating, String fitchRating, Integer orderNumber);
 }
